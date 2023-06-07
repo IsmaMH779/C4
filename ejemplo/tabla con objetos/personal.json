@@ -1,0 +1,21 @@
+{
+    "nombre": "ismael",
+    "oficio": "programador backend",
+    "empresas": [
+        {
+            "nombre": "Epic Games",
+            "años": "3",
+            "puesto": "Programador junior"
+        },
+        {
+            "nombre": "Riot Games",
+            "años": "2",
+            "puesto": "Programador senior"
+        },
+        {
+            "nombre": "Steam",
+            "años": "1",
+            "puesto": "Programador jefe"
+        }
+    ]
+}

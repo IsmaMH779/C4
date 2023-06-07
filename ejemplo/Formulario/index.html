@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <form name="formulario" onsubmit="return validar()" action="#" method="post">
+        <div class="row">
+            <label for="nombre">Nombre:</label>
+            <input type="text" onkeyup="validarNombre()" id="nombre" class="nombre" name="nombre"
+                placeholder="Introducir nombre" minlength="2" maxlength="30" required pattern="[a-zA-z\s]+">
+            <div class="error" id="errorNombre"></div>
+        </div>
+        <div class="row">
+            <label for="email">Email:</label>
+            <input type="email" onkeyup="validarEmail()" id="email" class="email" name="email">
+            <div class="error" id="errorEmail"></div>
+        </div>
+        <div class="row">
+            <label for="telef">Telf:</label>
+            <input type="telef" onkeyup="validarNum()" id="telef" class="telef" name="telef">
+            <div class="error" id="errorNum"></div>
+        </div>
+        <div>
+            <label for=""><input type="checkbox" name="vicio" value="toros">Toros</label>
+            <label for=""><input type="checkbox" name="vicio" value="nose">nose</label>
+        </div>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
