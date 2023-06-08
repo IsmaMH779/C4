@@ -31,6 +31,18 @@
             <label for=""><input type="checkbox" name="vicio" value="toros">Toros</label>
             <label for=""><input type="checkbox" name="vicio" value="nose">nose</label>
         </div>
+        <div>
+            <label for="">
+                <input type="checkbox" onclick="validarCheckbox()" name="grpd">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, nobis.
+            </label>
+            <div class="error" id="errorCheck"></div>
+        </div>
+        <div>
+            <label for="">DNI:</label>
+            <label for=""><input onkeyup="validarDniNie()" type="text" name="dni"></label>
+            <div class="error" id="errorDni"></div>
+        </div>
         <input type="submit" value="Enviar">
     </form>
 

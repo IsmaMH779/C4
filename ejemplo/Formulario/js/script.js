@@ -1,5 +1,5 @@
-let NombreError = EmailError = NumeroError = true;
-
+let NombreError = EmailError = NumeroError = CheckError = CheckDNINIE = true;
+const LETRASDNI = "TRWAGMYFPDXBNJZSQVHLCKE";
 //Mensaje de error
 function mensajeDeError(id, mensaje) {
 
@@ -17,10 +17,10 @@ function validarNombre() {
         mensajeDeError('errorNombre', '')
         var regex = /^[a-zA-Z\s]+$/;
         if (regex.test(nombre) === false) {
-            document.getElementById("errorNombre").innerHTML = "ERROR: campo de nombre";
+            mensajeDeError('errorNombre', 'ERROR: campo de nombre')
         }
         else {
-            document.getElementById("errorNombre").innerHTML = "";
+            mensajeDeError('errorNombre', '')
             NombreError = false;
         }
     }
@@ -36,10 +36,11 @@ function validarEmail() {
         mensajeDeError('errorEmail', '')
         var regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         if (regex.test(Email) === false) {
-            document.getElementById("errorEmail").innerHTML = "ERROR: campo de Email";
+            mensajeDeError('errorEmail', 'ERROR: campo Email')
+
         }
         else {
-            document.getElementById("errorEmail").innerHTML = "";
+            mensajeDeError('errorEmail', '')
             EmailError = false;
         }
     }
@@ -55,24 +56,68 @@ function validarNum() {
         mensajeDeError('errorNum', '');
         var regex = /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/;
         if (regex.test(num) === false) {
-            document.getElementById("errorNum").innerHTML = "ERROR: campo Telf";
+            mensajeDeError('errorNum', 'ERROR: campo Telf')
         }
         else {
-            document.getElementById("errorNum").innerHTML = "";
+            mensajeDeError('errorNum', '');
             NumeroError = false;
 
         }
     }
 }
 
+function validarCheckbox() {
+    let grpd = document.formulario.grpd.checked;
+    console.log(grpd)
+    if (!grpd) {
+        mensajeDeError('errorCheck', 'ERROR: acepta los terminos');
+    }
+    else {
+        mensajeDeError('errorCheck', '');
+        CheckError = false;
+    }
+};
+
+
+function validarDniNie() {
+    var dninie = ''
+    dninie = document.formulario.dni.value;
+    if (dninie == "") {
+        mensajeDeError('errorDni', 'ERROR: DNI')
+    }
+    else {
+        mensajeDeError('errorDni', '')
+        var regex = /^[XYZ]?\d{8}[A-Z]$/i;
+        if (regex.test(dninie) === false) {
+            mensajeDeError('errorDni', 'ERROR: DNI')
+        }
+        else {
+            mensajeDeError('errorDni', '')
+            CheckDNINIE = false;
+            let letra = dninie[dninie.length - 1];
+            regex = /\d+/g;
+            dni = parseInt(dninie.match(regex));
+            if (LETRASDNI[dni % 23] != letra) {
+                mensajeDeError('errorDni', 'ERROR: Letra no correcta')
+            }
+            else {
+                mensajeDeError('errorDni', 'ERROR: DNI')
+                CheckDNINIE = false;
+            }
+        }
+    }
+}
+
+
 
 function validar() {
 
-    if (!NombreError && !EmailError && !NumeroError) return true;
+    if (!NombreError && !EmailError && !NumeroError && !CheckError && !CheckDNINIE) return true;
     else {
         validarNombre();
         validarEmail();
         validarNum();
+        validarCheckbox();
         return false;
     }
 
