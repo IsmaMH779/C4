@@ -1,0 +1,29 @@
+.error {
+    color: red;
+    width: 75%;
+}
+
+#alignTab {
+    display: flex;
+    justify-content: center;
+}
+
+#tablero {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 70px 70px 70px;
+    grid-template-rows: 70px 70px 70px;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
