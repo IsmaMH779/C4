@@ -1,9 +1,12 @@
 var player1 = '';
 var player2 = '';
-let array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let displayed = false;
 let counter = 1;
-
+let bluePlayer = [];
+let redPlayer = [];
+let haveWiner = false;
+let switchPlayer = null;
 
 function startGame() {
     //call players input value
@@ -24,7 +27,7 @@ function startGame() {
             DisplayGame()
         }
     }
-}
+};
 
 
 function DisplayGame() {
@@ -34,30 +37,37 @@ function DisplayGame() {
         cuadrado.id = 'butt-' + e;
         cuadrado.addEventListener('click', function pressed() {
             playerPressed(e)
+
         })
         document.getElementById('tablero').appendChild(cuadrado);
 
     })
-
-}
+};
 
 
 function playerPressed(e) {
-    if (counter % 2 != 0) {
-        red = document.getElementById('butt-' + e);
-        red.className = 'red';
 
-        counter++;
-    }
-    else {
-        blue = document.getElementById('butt-' + e);
-        blue.className = 'blue';
+    button = document.getElementById('butt-' + e);
 
-        counter++;
-    }
+    counter % 2 != 0 ?
+        ((!button.classList.contains('red') && !button.classList.contains('blue') ? (button.className = 'red', counter++, redPlayer.push(e)) : null), switchPlayer = redPlayer) :
+        ((!button.classList.contains('red') && !button.classList.contains('blue') ? (button.className = 'blue', counter++, bluePlayer.push(e)) : null), switchPlayer = bluePlayer);
 
-}
+    rules()
+};
 
+function rules() {
+    switchPlayer.includes(1) && switchPlayer.includes(2) && switchPlayer.includes(3) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
+    switchPlayer.includes(4) && switchPlayer.includes(5) && switchPlayer.includes(6) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
+    switchPlayer.includes(7) && switchPlayer.includes(8) && switchPlayer.includes(9) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
+
+    switchPlayer.includes(1) && switchPlayer.includes(4) && switchPlayer.includes(7) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
+    switchPlayer.includes(2) && switchPlayer.includes(5) && switchPlayer.includes(8) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
+    switchPlayer.includes(3) && switchPlayer.includes(6) && switchPlayer.includes(9) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
+
+    switchPlayer.includes(3) && switchPlayer.includes(5) && switchPlayer.includes(7) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
+    switchPlayer.includes(1) && switchPlayer.includes(5) && switchPlayer.includes(9) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
+};
 
 
 
