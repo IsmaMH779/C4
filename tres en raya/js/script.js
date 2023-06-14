@@ -52,22 +52,38 @@ function playerPressed(e) {
     counter % 2 != 0 ?
         ((!button.classList.contains('red') && !button.classList.contains('blue') ? (button.className = 'red', counter++, redPlayer.push(e)) : null), switchPlayer = redPlayer) :
         ((!button.classList.contains('red') && !button.classList.contains('blue') ? (button.className = 'blue', counter++, bluePlayer.push(e)) : null), switchPlayer = bluePlayer);
-
+    totalButonsPressed = bluePlayer.length + redPlayer.length
     rules()
+    //verify if the game ended
+    haveWiner || totalButonsPressed == 9 ? resetGame() : null;
 };
 
 function rules() {
+    //game rules
+    //horizontal
     switchPlayer.includes(1) && switchPlayer.includes(2) && switchPlayer.includes(3) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
     switchPlayer.includes(4) && switchPlayer.includes(5) && switchPlayer.includes(6) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
     switchPlayer.includes(7) && switchPlayer.includes(8) && switchPlayer.includes(9) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
-
+    //vertical
     switchPlayer.includes(1) && switchPlayer.includes(4) && switchPlayer.includes(7) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
     switchPlayer.includes(2) && switchPlayer.includes(5) && switchPlayer.includes(8) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
     switchPlayer.includes(3) && switchPlayer.includes(6) && switchPlayer.includes(9) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
-
+    //diagonal
     switchPlayer.includes(3) && switchPlayer.includes(5) && switchPlayer.includes(7) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
     switchPlayer.includes(1) && switchPlayer.includes(5) && switchPlayer.includes(9) ? (!haveWiner ? ((switchPlayer == redPlayer ? alert(player1 + ' ha ganado') : alert(player2 + ' ha ganado')), haveWiner = true) : null) : null;
 };
 
+//function to reset the game
+function resetGame() {
+    !haveWiner ? alert('empate') : null;
+
+    array.forEach(e => {
+        butons = document.getElementById('butt-' + e);
+        butons.className = '';
+        haveWiner = false;
+        bluePlayer = [];
+        redPlayer = [];
+    })
+};
 
 
