@@ -9,11 +9,11 @@ let haveWiner = false;
 let switchPlayer = null;
 
 function startGame() {
-    //call players input value
+    //Get players names
     player1 = document.getElementById('player1').value;
     player2 = document.getElementById('player2').value;
 
-    //confirm players
+    //confirm playerss
     confirmP1 = false;
     confirmP2 = false;
 
@@ -21,17 +21,12 @@ function startGame() {
     player2 != '' ? (confirmP2 = true, document.getElementById('errorp2').innerHTML = '') : (confirmP2 = false, document.getElementById('errorp2').innerHTML = 'introduce el jugador azul');
 
     //verify if game are displayed
-    if (!displayed) {
-        if (confirmP1 && confirmP2) {
-            displayed = true
-            DisplayGame()
-        }
-    }
+    !displayed ? (confirmP1 && confirmP2 ? (displayed = true, DisplayGame()) : null) : null;
 };
 
 
 function DisplayGame() {
-
+    //show board
     array.forEach(e => {
         var cuadrado = document.createElement("button");
         cuadrado.id = 'butt-' + e;
