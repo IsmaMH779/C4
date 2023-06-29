@@ -1,10 +1,13 @@
+const express = require('express');
 const port = 3000;
+const app = express();
+
 const db = require('./db');
 
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
-app.use(expres.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 //obtener todos los usuarios
 app.get('/', (req, res) => {
@@ -22,9 +25,9 @@ app.get('/agregar', (req, res) => {
 
 //agregar un usuario a la bd
 app.post('/agregar', (req, res) => {
-    const { nombre, email } = req.body;
+    const { nombre, correo } = req.body;
     sql = 'insert into usuarios set ?';
-    db.query(sql, { ombre, email }, (error, result) => {
+    db.query(sql, { nombre, correo }, (error, result) => {
         if (error) throw error;
         res.redirect('/')
     });
@@ -42,8 +45,8 @@ app.get('editar/:id', (req, res) => {
 //actualizar un usuarui en la base de datos
 app.post('/editar/:id', (req, res) => {
     const id = req.params.id;
-    const { nombre, email } = req.body;
-    db.query('update usuarios set nombre = ?, email = ? where id = ?', [nombre, email, id], (error, result) => {
+    const { nombre, correo } = req.body;
+    db.query('update usuarios set nombre = ?, correo = ? where id = ?', [nombre, correo, id], (error, result) => {
         if (error) throw error;
         res.redirect('/')
     })
@@ -61,5 +64,5 @@ app.get('/eliminar/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log('app running on http://localhost: ' + port)
+    console.log(`App running on http://localhost:${port}`);
 })
