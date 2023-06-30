@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias</title>
+    <!-- <link rel="stylesheet" type="text/css" href="public.css"> -->
+</head>
+
+<body>
+    <h1>Categorias</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>nombre</th>
+            <th>Productos</th>
+        </tr>
+        <% categorias.forEach(cat=> { %>
+            <tr>
+                <td>
+                    <%=cat.id %>
+                </td>
+                <td>
+                    <%=cat.nombre %>
+                </td>
+                <td>
+                    <a href="/producto_categoria/<%= cat.id %>">Productos</a>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+
+</body>
+
+</html>

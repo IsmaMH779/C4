@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>productos</title>
+    <link rel="stylesheet" type="text/css" href="public.css">
+</head>
+
+<body>
+    <h1>Productos</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>nombre</th>
+            <th>categoria</th>
+            <th>precio</th>
+            <th>fabricante</th>
+            <th>stock</th>
+        </tr>
+        <% productos.forEach(productos=> { %>
+            <tr>
+                <td>
+                    <%=productos.id %>
+                </td>
+                <td>
+                    <%=productos.nombre %>
+                </td>
+                <td>
+                    <%=productos.categoria %>
+                </td>
+                <td>
+                    <%=productos.precio %>
+                </td>
+                <td>
+                    <%=productos.fabricante %>
+                </td>
+                <td>
+                    <%=productos.stock %>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+
+</body>
+
+</html>

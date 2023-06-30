@@ -34,7 +34,7 @@ app.post('/agregar', (req, res) => {
 });
 
 //mostrar formulario para editar un usuario
-app.get('editar/:id', (req, res) => {
+app.get('/editar/:id', (req, res) => {
     const id = req.params.id;
     db.query('select * from usuarios where id = ?', id, (error, result) => {
         if (error) throw error;
@@ -49,8 +49,8 @@ app.post('/editar/:id', (req, res) => {
     db.query('update usuarios set nombre = ?, correo = ? where id = ?', [nombre, correo, id], (error, result) => {
         if (error) throw error;
         res.redirect('/')
-    })
-})
+    });
+});
 
 
 //elimiar un usuario de la base de datos

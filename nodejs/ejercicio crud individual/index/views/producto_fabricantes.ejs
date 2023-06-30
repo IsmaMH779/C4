@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P fabricante</title>
+
+</head>
+
+<body>
+    <h1>
+        <%=fab %>
+    </h1>
+    <table>
+        <tr>
+            <th>nombre</th>
+            <th>precio</th>
+            <th>stock</th>
+            <th>categoria</th>
+        </tr>
+        <% productos.forEach(p=> { %>
+            <tr>
+                <td>
+                    <%=p.art %>
+                </td>
+                <td>
+                    <%=p.precio %>
+                </td>
+                <td>
+                    <%=p.stock %>
+                </td>
+                <td>
+                    <%=p.nombre %>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+
+</body>
+
+</html>

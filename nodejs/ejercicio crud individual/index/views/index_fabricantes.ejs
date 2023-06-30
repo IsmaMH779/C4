@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabricantes</title>
+    <link rel="stylesheet" type="text/css" href="public.css">
+</head>
+
+<body>
+    <h1>Fabricanes</h1>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>nombre</th>
+            <th>productos</th>
+        </tr>
+        <% fabricantes.forEach(fabricantes=> { %>
+            <tr>
+                <td>
+                    <%=fabricantes.id %>
+                </td>
+                <td>
+                    <%=fabricantes.nombre %>
+                </td>
+                <td>
+                    <a href="/productos_fabricante/<%= fabricantes.id %>">Productos</a>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+
+</body>
+
+</html>
