@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>P Categoria</title>
-    <link rel="stylesheet" type="text/css" href="public.css">
+
 </head>
 
 <body>
     <h1>
-        <%=cat %>
+        <%= cat %>
     </h1>
     <table>
         <tr>
@@ -22,16 +22,20 @@
         <% productos.forEach(p=> { %>
             <tr>
                 <td>
-                    <%=p.art %>
+                    <%= p.art %>
                 </td>
                 <td>
-                    <%=p.precio %>
+                    <%= p.precio %>
                 </td>
                 <td>
-                    <%=p.stock %>
+                    <%= p.stock %>
                 </td>
                 <td>
-                    <%=p.nombre %>
+                    <%= p.nombre %>
+                </td>
+                <td>
+                    <a href="/editar/<%= p.pid %>">Editar</a>
+                    <a href="/eliminar/<%= p.pid %>">Eliminar</a>
                 </td>
             </tr>
             <% }) %>

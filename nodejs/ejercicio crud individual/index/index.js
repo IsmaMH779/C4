@@ -36,7 +36,7 @@ app.get('/fabricantes', (req, res) => {
 
 //mostrar tabla productos por fabricantes
 app.get('/productos_fabricante/:id', (req, res) => {
-    sql = 'select f.nombre as fabricante, p.nombre as art,precio,stock,c.nombre from productos as p join fabricantes as f on f.id = p.fabricante join categorias as c on c.id = p.categoria where f.id = ? '
+    sql = 'select f.nombre as fabricante, p.nombre as art,precio,stock,c.nombre,p.id as pid from productos as p join fabricantes as f on f.id = p.fabricante join categorias as c on c.id = p.categoria where f.id = ? '
     const id = req.params.id;
     db.query(sql, id, (error, result) => {
         if (error) throw error;
@@ -54,7 +54,7 @@ app.get('/categorias', (req, res) => {
 });
 //mostrar tabla productos por categoria
 app.get('/producto_categoria/:id', (req, res) => {
-    sql = 'select c.nombre as categoria, p.nombre as art,precio,stock,f.nombre from productos as p join fabricantes as f on f.id = p.fabricante join categorias as c on c.id = p.categoria where c.id = ? '
+    sql = 'select c.nombre as categoria, p.nombre as art,precio,stock,f.nombre,p.id as pid from productos as p join fabricantes as f on f.id = p.fabricante join categorias as c on c.id = p.categoria where c.id = ? '
     const id = req.params.id;
     db.query(sql, id, (error, result) => {
         if (error) throw error;
@@ -63,6 +63,38 @@ app.get('/producto_categoria/:id', (req, res) => {
 });
 
 
+// ACCIONES
+
+// tabla productos
+//eliminar producto
+app.get('/eliminar/:id', (req, res) => {
+    const id = req.params.id;
+    db.query('DELETE FROM productos WHERE id = ?', id, (error, result) => {
+        if (error) throw error;
+        res.redirect('/productos');
+    });
+});
+
+
+//mostrar el producto a editar
+app.get('/editar/:id', (req, res) => {
+    const id = req.params.id;
+    db.query('SELECT * FROM productos WHERE id = ?', id, (error, result) => {
+        if (error) throw error;
+        res.render('editar', { productos: result[0] });
+    });
+});
+
+//actualizar datos editados
+
+app.post('/editar/:id', (req, res) => {
+    const id = req.params.id;
+    const { precio, stock } = req.body;
+    db.query('UPDATE productos SET precio = ?, stock = ? WHERE id = ?', [precio, stock, id], (error, result) => {
+        if (error) throw error;
+        res.redirect('/');
+    });
+});
 
 
 app.listen(port, () => {

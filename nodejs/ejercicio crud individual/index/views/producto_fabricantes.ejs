@@ -33,6 +33,10 @@
                 <td>
                     <%=p.nombre %>
                 </td>
+                <td>
+                    <a href="/editar/<%= p.pid %>">Editar</a>
+                    <a href="/eliminar/<%= p.pid %>">Eliminar</a>
+                </td>
             </tr>
             <% }) %>
     </table>

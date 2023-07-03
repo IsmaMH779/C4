@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" type="text/css" href="/public.css">
+
+</head>
+
+<body>
+    <h1>Editar Usuario</h1>
+    <form action="/editar/<%= productos.id %>" method="post">
+        <label for="precico">Precio:</label>
+        <input type="text" id="precio" name="precio" value="<%= productos.precio %>" required>
+        <br>
+        <label for="stock">Stock:</label>
+        <input type='text' id="stock" name="stock" value="<%= productos.stock %>" required>
+        <br>
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+
+</html>

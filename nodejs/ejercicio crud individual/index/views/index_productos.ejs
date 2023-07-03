@@ -18,6 +18,7 @@
             <th>precio</th>
             <th>fabricante</th>
             <th>stock</th>
+            <th>acciones</th>
         </tr>
         <% productos.forEach(productos=> { %>
             <tr>
@@ -38,6 +39,10 @@
                 </td>
                 <td>
                     <%=productos.stock %>
+                </td>
+                <td>
+                    <a href="/editar/<%= productos.id %>">Editar</a>
+                    <a href="/eliminar/<%= productos.id %>">Eliminar</a>
                 </td>
             </tr>
             <% }) %>
