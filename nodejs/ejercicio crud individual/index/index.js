@@ -60,6 +60,7 @@ app.get('/producto_categoria/:id', (req, res) => {
         if (error) throw error;
         res.render('producto_categoria', { cat: result[0].categoria, productos: result })
     });
+
 });
 
 
@@ -95,7 +96,24 @@ app.post('/editar/:id', (req, res) => {
         res.redirect('/');
     });
 });
+//mostrar productos ordenados por precio ascendente
+app.get('/ProductoPrecioAscendente', (req, res) => {
+    sql = 'select * from productos order by precio asc'
+    db.query(sql, (error, result) => {
+        if (error) throw error;
+        res.render('index_productos', { productos: result })
 
+    });
+});
+
+//mostrar productos ordenados por precio descendente
+app.get('/ProductoPrecioDescendente', (req, res) => {
+    sql = 'select * from productos order by precio desc'
+    db.query(sql, (error, result) => {
+        if (error) throw error;
+        res.render('index_productos', { productos: result })
+    });
+});
 
 app.listen(port, () => {
     console.log(`App running on http://localhost:${port}`);
